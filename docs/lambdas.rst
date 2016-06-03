@@ -95,6 +95,7 @@ The following is the anatomy of a lambda in gordon.
       auto-vpc-policy: { BOOLEAN }
       auto-run-policy: { BOOLEAN }
       cli-output: { BOOLEAN }
+      alias: { STRING }
       policies:
         { POLICY_NAME }:
           { MAP }
@@ -534,6 +535,17 @@ Required                     No
 Default                      True
 Valid types                  ``boolean``
 Description                  Output the lambda ARN as part of the ``apply`` output
+===========================  ============================================================================================================
+
+
+alias
+^^^^^^^^^^^^^^^^^^^^^^
+
+===========================  ============================================================================================================
+Name                         ``alias``
+Required                     No
+Valid types                  ``string,(?!^[0-9]+$)([a-zA-Z0-9-_]+)``
+Description                  Creates an alias for the lambda version being deployed in addition to ``current``
 ===========================  ============================================================================================================
 
 

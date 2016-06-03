@@ -303,6 +303,24 @@ class Lambda(base.BaseResource):
             )
         )
 
+        # Add a custom alias if the setting is configured
+        if self.settings.get("alias"):
+            template.add_resource(
+                awslambda.Alias(
+                    self.current_alias_cf_name,
+                    DependsOn=[
+                        version.name
+                    ],
+                    FunctionName=troposphere.Ref(
+                        function
+                    ),
+                    FunctionVersion=troposphere.GetAtt(
+                        version, "Version"
+                    ),
+                    Name=self.settings.get("alias"),
+                )
+            )
+
         alias = template.add_resource(
             awslambda.Alias(
                 self.current_alias_cf_name,
